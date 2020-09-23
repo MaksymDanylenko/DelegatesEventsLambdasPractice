@@ -9,8 +9,13 @@ namespace EventsPractice
             string command = "";
             PiggyBank piggyBank = new PiggyBank();
 
-            piggyBank.takeEvent += MoneyChanged;
-            piggyBank.takeEvent += Reached;
+            piggyBank.takeEvent += x => Console.WriteLine($"The money amount is {x}");
+            piggyBank.takeEvent += x =>{
+                if (x >= 500)
+                {
+                    Console.WriteLine($"You reached your savings goal! You have {x}");
+                }
+            };
 
             do
             {
@@ -27,7 +32,7 @@ namespace EventsPractice
             } while (!command.Equals("exit"));
         }
 
-        static void MoneyChanged(int value)
+        /*static void MoneyChanged(int value)
         {
             Console.WriteLine($"The money amount is {value}");
         }
@@ -38,6 +43,6 @@ namespace EventsPractice
             {
                 Console.WriteLine($"You reached your savings goal! You have {value}");
             }
-        }
+        }*/
     }
 }
